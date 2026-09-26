@@ -56,7 +56,6 @@
                 <div class="text-center mb-8">
                     <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-2">ธนาคารขยะรีไซเคิล</h2>
                     <h3 class="text-lg font-semibold text-emerald-700">ตารางราคารับซื้อวัสดุรีไซเคิล</h3>
-                    <p class="text-slate-400 text-sm mt-1">ราคาตั้งแต่วันที่ 1 - 31 สิงหาคม 2569</p>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -149,7 +148,7 @@
 
         </div>
 
-        <!-- ส่วนที่ 5: การเคลื่อนไหวของบัญชี (Transaction History แยกรายแอคเคาท์) -->
+        <!-- ส่วนที่ 5: การเคลื่อนไหวของบัญชี (Transaction History) -->
         <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
             <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
                 <span>📜</span> ประวัติการเคลื่อนไหวของบัญชี (Statement)
@@ -240,10 +239,9 @@
             { id: 36, name: "น้ำมันใช้แล้ว", desc: "น้ำมันทอดอาหาร", price: 20.70 }
         ];
 
-        let currentUser = null; // เก็บข้อมูลแอคเคาท์ที่กำลังล็อกอิน
+        let currentUser = null;
 
         window.onload = function() {
-            // โหลดตารางราคารับซื้อหน้าแรก
             const tableBody = document.getElementById('masterPriceTable');
             let htmlContent = '';
             wasteData.forEach(item => {
@@ -258,7 +256,6 @@
             });
             tableBody.innerHTML = htmlContent;
 
-            // ตรวจสอบว่ามีข้อมูล Session ค้างไว้ไหม
             const savedUser = localStorage.getItem('gbank_current_user');
             if (savedUser) {
                 currentUser = JSON.parse(savedUser);
@@ -275,14 +272,12 @@
                 return;
             }
 
-            // ค้นหาบัญชีจาก LocalStorage หรือสร้างใหม่ถ้ายังไม่มี
             const storageKey = 'gbank_account_' + idInput;
             let accountData = localStorage.getItem(storageKey);
 
             if (accountData) {
                 currentUser = JSON.parse(accountData);
             } else {
-                // สร้างบัญชีใหม่เริ่มต้น
                 currentUser = {
                     id: idInput,
                     name: nameInput,
@@ -309,7 +304,6 @@
             authBtn.setAttribute('onclick', 'logout()');
             authBtn.className = "bg-rose-50 text-rose-600 border border-rose-200 px-4 py-2 rounded-lg text-sm font-medium hover:bg-rose-100 transition";
 
-            // เตรียมแถวฝากขยะ
             const container = document.getElementById('depositItemsContainer');
             container.innerHTML = '';
             addDepositRow();
