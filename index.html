@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-BANK RMUTR - ธนาคารรีไซเคิล</title>
+    <title>G-BANK RMUTR - ธนาคารขยะรีไซเคิล</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -51,7 +50,7 @@
             </div>
         </section>
 
-        <!-- Price List Table Section (ตามแบบฟอร์มทางการ) -->
+        <!-- Price List Table Section -->
         <section id="prices" class="py-12 max-w-7xl mx-auto px-4">
             <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8">
                 <div class="text-center mb-8">
@@ -79,7 +78,7 @@
         </section>
     </div>
 
-    <!-- DASHBOARD VIEW: หน้าบัญชีสมาชิก (ซ่อนไว้จนกว่าจะล็อกอิน) -->
+    <!-- DASHBOARD VIEW: หน้าบัญชีสมาชิก -->
     <div id="dashboardView" class="hidden max-w-7xl mx-auto px-4 py-8">
         <!-- ข้อมูลบัญชีผู้ใช้ -->
         <div class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white p-6 rounded-3xl shadow-lg mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
@@ -94,7 +93,7 @@
             </div>
         </div>
 
-        <!-- แผงควบคุมการทำงานหลัก (คำนวณขยะฝากหลายรายการ & ถอนเงิน) -->
+        <!-- แผงควบคุมการทำงานหลัก -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
             
             <!-- ส่วนที่ฝากขยะ: เลือกหลายรายการ -->
@@ -105,7 +104,7 @@
                 <p class="text-slate-500 text-sm mb-6">เลือกประเภทขยะที่คุณนำมาฝาก และระบุน้ำหนักในแต่ละรายการ</p>
                 
                 <div id="depositItemsContainer" class="space-y-4 mb-6">
-                    <!-- รายการขยะที่จะเลือก (Dynamic Rows) -->
+                    <!-- รายการขยะที่จะเลือก -->
                 </div>
 
                 <div class="flex gap-3 mb-6">
@@ -150,7 +149,7 @@
 
         </div>
 
-        <!-- ส่วนที่ 5: การเคลื่อนไหวของบัญชี (Transaction History) -->
+        <!-- ส่วนที่ 5: การเคลื่อนไหวของบัญชี (Transaction History พร้อมคอลัมน์ยอดคงเหลือ) -->
         <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
             <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
                 <span>📜</span> ประวัติการเคลื่อนไหวของบัญชี (Statement)
@@ -163,6 +162,7 @@
                             <th class="py-3 px-4">รายการ</th>
                             <th class="py-3 px-4">น้ำหนักรวม (กก.)</th>
                             <th class="py-3 px-4 text-right">จำนวนเงิน (บาท)</th>
+                            <th class="py-3 px-4 text-right">ยอดเงินคงเหลือ (บาท)</th>
                         </tr>
                     </thead>
                     <tbody id="transactionTableBody">
@@ -171,6 +171,7 @@
                             <td class="py-3 px-4 font-medium text-slate-800">ฝากขยะ: พลาสติกขวดน้ำใส (5.0 กก.)</td>
                             <td class="py-3 px-4 text-slate-600">5.0 กก.</td>
                             <td class="py-3 px-4 text-right font-bold text-emerald-600">+27.00</td>
+                            <td class="py-3 px-4 text-right font-bold text-slate-800">450.00</td>
                         </tr>
                     </tbody>
                 </table>
@@ -202,7 +203,6 @@
 
     <!-- Script ข้อมูลและระบบคำนวณ -->
     <script>
-        // ฐานข้อมูลราคารับซื้อทั้ง 36 รายการ (อ้างอิงจากภาพตัวอย่างปี 2569)
         const wasteData = [
             { id: 1, name: "กระดาษขาว", desc: "กระดาษถ่ายเอกสาร", price: 4.50 },
             { id: 2, name: "กล่องกระดาษ", desc: "กล่องกระดาษ", price: 3.15 },
@@ -245,7 +245,6 @@
         let currentBalance = 450.00;
         let isLoggedIn = false;
 
-        // โหลดข้อมูลลงตารางหน้าแรกตอนเปิดเว็บ
         window.onload = function() {
             const tableBody = document.getElementById('masterPriceTable');
             let htmlContent = '';
@@ -260,10 +259,9 @@
                 `;
             });
             tableBody.innerHTML = htmlContent;
-            addDepositRow(); // เพิ่มแถวเลือกขยะเริ่มต้น 1 แถวในหน้า Dashboard
+            addDepositRow();
         }
 
-        // ระบบจัดการแถวเลือกขยะหลายรายการ (Multi-item Deposit)
         function addDepositRow() {
             const container = document.getElementById('depositItemsContainer');
             const rowId = 'row_' + Date.now() + Math.random();
@@ -332,7 +330,6 @@
             document.getElementById('totalMoneyPreview').innerText = totalMoney.toFixed(2) + ' บาท';
         }
 
-        // ยืนยันการฝยะเข้าบัญชี
         function processDepositWaste() {
             const rows = document.querySelectorAll('#depositItemsContainer > div');
             let totalMoney = 0;
@@ -361,7 +358,6 @@
             currentBalance += totalMoney;
             updateBalanceUI();
 
-            // บันทึก Statement
             const now = new Date();
             const dateStr = now.toLocaleDateString('th-TH') + ' ' + now.toLocaleTimeString('th-TH', {hour: '2-digit', minute:'2-digit'});
             
@@ -373,11 +369,10 @@
                 <td class="py-3 px-4 font-medium text-slate-800">ฝากขยะ: ${summaryDesc.join(', ')}</td>
                 <td class="py-3 px-4 text-slate-600">${totalWeight.toFixed(1)} กก.</td>
                 <td class="py-3 px-4 text-right font-bold text-emerald-600">+${totalMoney.toFixed(2)}</td>
+                <td class="py-3 px-4 text-right font-bold text-slate-800">${currentBalance.toFixed(2)}</td>
             `;
             tbody.insertBefore(newRow, tbody.firstChild);
 
-            // รีเซ็ตฟอร์ม
-            document.getElementById('depositItemsContainer.innerHTML = ""');
             document.getElementById('depositItemsContainer').innerHTML = '';
             addDepositRow();
             calculateTotalDeposit();
@@ -385,7 +380,6 @@
             alert(`ฝากขยะสำเร็จ! ระบบได้เพิ่มเงินเข้าบัญชีของคุณ ${totalMoney.toFixed(2)} บาท เรียบร้อยแล้ว`);
         }
 
-        // ฟังก์ชันถอนเงิน
         function processWithdraw() {
             const amount = parseFloat(document.getElementById('withdrawAmount').value);
             if (!amount || amount <= 0) { alert('กรุณาระบุจำนวนเงินที่ต้องการถอน'); return; }
@@ -405,6 +399,7 @@
                 <td class="py-3 px-4 font-medium text-slate-800">ถอนเงินสดสะสม</td>
                 <td class="py-3 px-4 text-slate-600">-</td>
                 <td class="py-3 px-4 text-right font-bold text-rose-600">-${amount.toFixed(2)}</td>
+                <td class="py-3 px-4 text-right font-bold text-slate-800">${currentBalance.toFixed(2)}</td>
             `;
             tbody.insertBefore(newRow, tbody.firstChild);
             document.getElementById('withdrawAmount').value = '';
