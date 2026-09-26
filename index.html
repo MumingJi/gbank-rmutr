@@ -55,8 +55,8 @@
             <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8">
                 <div class="text-center mb-8">
                     <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-2">ธนาคารขยะรีไซเคิล</h2>
-                    <h3 class="text-lg font-semibold text-emerald-700">ตารางคาราวัสดุรีไซเคิล</h3>
-                    <p class="text-slate-400 text-sm mt-1">ราคาตั้งแต่วันที่ 1- 31 สิงหาคม 2569</p>
+                    <h3 class="text-lg font-semibold text-emerald-700">ตารางราคารับซื้อวัสดุรีไซเคิล</h3>
+                    <p class="text-slate-400 text-sm mt-1">ราคาตั้งแต่วันที่ 1 - 31 สิงหาคม 2569</p>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -78,18 +78,18 @@
         </section>
     </div>
 
-    <!-- DASHBOARD VIEW: หน้าบัญชีสมาชิก -->
+    <!-- DASHBOARD VIEW: หน้าบัญชีสมาชิกแยกรายบุคคล -->
     <div id="dashboardView" class="hidden max-w-7xl mx-auto px-4 py-8">
         <!-- ข้อมูลบัญชีผู้ใช้ -->
         <div class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white p-6 rounded-3xl shadow-lg mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <div>
                 <p class="text-emerald-100 text-sm">ยินดีต้อนรับสมาชิก G-BANK</p>
-                <h2 id="userNameDisplay" class="text-2xl font-bold">นายสมชาย รักษ์โลก (รหัส: 651111xxx)</h2>
-                <p class="text-xs text-emerald-200 mt-1">สถานะ: นักศึกษา มทร.ธัญบุรี</p>
+                <h2 id="userNameDisplay" class="text-2xl font-bold">ชื่อสมาชิก</h2>
+                <p class="text-xs text-emerald-200 mt-1">รหัสนักศึกษา: <span id="userIdDisplay">---</span> | สถานะ: สมาชิกธนาคารขยะ</p>
             </div>
             <div class="bg-white/10 backdrop-blur-md px-6 py-4 rounded-2xl text-center md:text-right border border-white/20">
                 <span class="text-xs text-emerald-100">ยอดเงินฝากคงเหลือในบัญชี</span>
-                <div class="text-3xl font-extrabold text-white mt-1"><span id="userBalance">450.00</span> บาท</div>
+                <div class="text-3xl font-extrabold text-white mt-1"><span id="userBalance">0.00</span> บาท</div>
             </div>
         </div>
 
@@ -149,7 +149,7 @@
 
         </div>
 
-        <!-- ส่วนที่ 5: การเคลื่อนไหวของบัญชี (Transaction History พร้อมคอลัมน์ยอดคงเหลือ) -->
+        <!-- ส่วนที่ 5: การเคลื่อนไหวของบัญชี (Transaction History แยกรายแอคเคาท์) -->
         <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
             <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
                 <span>📜</span> ประวัติการเคลื่อนไหวของบัญชี (Statement)
@@ -166,28 +166,26 @@
                         </tr>
                     </thead>
                     <tbody id="transactionTableBody">
-                        <tr class="border-b border-slate-100">
-                            <td class="py-3 px-4 text-slate-500">26/09/2026 10:30</td>
-                            <td class="py-3 px-4 font-medium text-slate-800">ฝากขยะ: พลาสติกขวดน้ำใส (5.0 กก.)</td>
-                            <td class="py-3 px-4 text-slate-600">5.0 กก.</td>
-                            <td class="py-3 px-4 text-right font-bold text-emerald-600">+27.00</td>
-                            <td class="py-3 px-4 text-right font-bold text-slate-800">450.00</td>
-                        </tr>
+                        <!-- โหลดข้อมูล Statement ของแอคเคาท์นั้นๆ -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
-    <!-- MODAL: หน้าต่างล็อกอินจำลอง -->
+    <!-- MODAL: หน้าต่างล็อกอินแยกตามรหัสประจำตัว -->
     <div id="loginModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
         <div class="bg-white w-full max-w-md p-6 rounded-3xl shadow-xl">
             <h3 class="text-2xl font-bold text-slate-800 mb-2">เข้าสู่ระบบ G-BANK</h3>
-            <p class="text-slate-500 text-sm mb-6">กรอกรหัสนักศึกษาหรือชื่อเพื่อเข้าใช้งาน</p>
+            <p class="text-slate-500 text-sm mb-6">กรอกรหัสนักศึกษาและชื่อ-นามสกุล เพื่อเข้าใช้งานบัญชีส่วนตัว</p>
             <div class="space-y-4 mb-6">
                 <div>
-                    <label class="block text-sm font-medium text-slate-700 mb-1">รหัสนักศึกษา / ชื่อผู้ใช้งาน</label>
-                    <input type="text" id="loginUserInput" placeholder="เช่น นายสมชาย รักษ์โลก" class="w-full border border-slate-300 rounded-lg p-3 focus:ring-2 focus:ring-emerald-500 outline-none text-sm" value="นายสมชาย รักษ์โลก">
+                    <label class="block text-sm font-medium text-slate-700 mb-1">รหัสนักศึกษา (ใช้เป็นเลขที่บัญชี)</label>
+                    <input type="text" id="loginIdInput" placeholder="เช่น 681111001" class="w-full border border-slate-300 rounded-lg p-3 focus:ring-2 focus:ring-emerald-500 outline-none text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">ชื่อ - นามสกุล</label>
+                    <input type="text" id="loginNameInput" placeholder="เช่น นายสมชาย รักษ์โลก" class="w-full border border-slate-300 rounded-lg p-3 focus:ring-2 focus:ring-emerald-500 outline-none text-sm">
                 </div>
             </div>
             <div class="flex gap-3">
@@ -195,13 +193,13 @@
                     ยกเลิก
                 </button>
                 <button onclick="submitLogin()" class="w-1/2 bg-emerald-600 text-white py-3 rounded-xl font-semibold hover:bg-emerald-700 transition text-sm">
-                    เข้าสู่ระบบ
+                    เข้าสู่ระบบ / สร้างบัญชี
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Script ข้อมูลและระบบคำนวณ -->
+    <!-- Script ข้อมูลและระบบแยกแอคเคาท์ด้วย LocalStorage -->
     <script>
         const wasteData = [
             { id: 1, name: "กระดาษขาว", desc: "กระดาษถ่ายเอกสาร", price: 4.50 },
@@ -242,10 +240,10 @@
             { id: 36, name: "น้ำมันใช้แล้ว", desc: "น้ำมันทอดอาหาร", price: 20.70 }
         ];
 
-        let currentBalance = 450.00;
-        let isLoggedIn = false;
+        let currentUser = null; // เก็บข้อมูลแอคเคาท์ที่กำลังล็อกอิน
 
         window.onload = function() {
+            // โหลดตารางราคารับซื้อหน้าแรก
             const tableBody = document.getElementById('masterPriceTable');
             let htmlContent = '';
             wasteData.forEach(item => {
@@ -259,7 +257,80 @@
                 `;
             });
             tableBody.innerHTML = htmlContent;
+
+            // ตรวจสอบว่ามีข้อมูล Session ค้างไว้ไหม
+            const savedUser = localStorage.getItem('gbank_current_user');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                setLoggedInUI();
+            }
+        }
+
+        function submitLogin() {
+            const idInput = document.getElementById('loginIdInput').value.trim();
+            const nameInput = document.getElementById('loginNameInput').value.trim();
+
+            if (!idInput || !nameInput) {
+                alert('กรุณากรอกรหัสนักศึกษาและชื่อ-นามสกุลให้ครบถ้วน');
+                return;
+            }
+
+            // ค้นหาบัญชีจาก LocalStorage หรือสร้างใหม่ถ้ายังไม่มี
+            const storageKey = 'gbank_account_' + idInput;
+            let accountData = localStorage.getItem(storageKey);
+
+            if (accountData) {
+                currentUser = JSON.parse(accountData);
+            } else {
+                // สร้างบัญชีใหม่เริ่มต้น
+                currentUser = {
+                    id: idInput,
+                    name: nameInput,
+                    balance: 0.00,
+                    history: []
+                };
+                saveAccountData();
+            }
+
+            localStorage.setItem('gbank_current_user', JSON.stringify(currentUser));
+            setLoggedInUI();
+            closeLoginModal();
+            switchView('dashboard');
+        }
+
+        function setLoggedInUI() {
+            document.getElementById('userNameDisplay').innerText = currentUser.name;
+            document.getElementById('userIdDisplay').innerText = currentUser.id;
+            updateBalanceUI();
+            renderTransactionTable();
+            
+            const authBtn = document.getElementById('authBtn');
+            authBtn.innerText = 'ออกจากระบบ';
+            authBtn.setAttribute('onclick', 'logout()');
+            authBtn.className = "bg-rose-50 text-rose-600 border border-rose-200 px-4 py-2 rounded-lg text-sm font-medium hover:bg-rose-100 transition";
+
+            // เตรียมแถวฝากขยะ
+            const container = document.getElementById('depositItemsContainer');
+            container.innerHTML = '';
             addDepositRow();
+        }
+
+        function logout() {
+            localStorage.removeItem('gbank_current_user');
+            currentUser = null;
+            switchView('home');
+            
+            const authBtn = document.getElementById('authBtn');
+            authBtn.innerText = 'เข้าสู่ระบบ';
+            authBtn.setAttribute('onclick', 'openLoginModal()');
+            authBtn.className = "bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-emerald-700 transition";
+        }
+
+        function saveAccountData() {
+            if (!currentUser) return;
+            const storageKey = 'gbank_account_' + currentUser.id;
+            localStorage.setItem(storageKey, JSON.stringify(currentUser));
+            localStorage.setItem('gbank_current_user', JSON.stringify(currentUser));
         }
 
         function addDepositRow() {
@@ -355,23 +426,25 @@
                 return;
             }
 
-            currentBalance += totalMoney;
-            updateBalanceUI();
-
+            currentUser.balance += totalMoney;
+            
             const now = new Date();
             const dateStr = now.toLocaleDateString('th-TH') + ' ' + now.toLocaleTimeString('th-TH', {hour: '2-digit', minute:'2-digit'});
             
-            const tbody = document.getElementById('transactionTableBody');
-            const newRow = document.createElement('tr');
-            newRow.className = "border-b border-slate-100";
-            newRow.innerHTML = `
-                <td class="py-3 px-4 text-slate-500">${dateStr}</td>
-                <td class="py-3 px-4 font-medium text-slate-800">ฝากขยะ: ${summaryDesc.join(', ')}</td>
-                <td class="py-3 px-4 text-slate-600">${totalWeight.toFixed(1)} กก.</td>
-                <td class="py-3 px-4 text-right font-bold text-emerald-600">+${totalMoney.toFixed(2)}</td>
-                <td class="py-3 px-4 text-right font-bold text-slate-800">${currentBalance.toFixed(2)}</td>
-            `;
-            tbody.insertBefore(newRow, tbody.firstChild);
+            const newTx = {
+                date: dateStr,
+                detail: `ฝากขยะ: ${summaryDesc.join(', ')}`,
+                weight: `${totalWeight.toFixed(1)} กก.`,
+                amount: `+${totalMoney.toFixed(2)}`,
+                type: 'emerald',
+                balance: currentUser.balance.toFixed(2)
+            };
+
+            currentUser.history.unshift(newTx);
+            saveAccountData();
+            
+            updateBalanceUI();
+            renderTransactionTable();
 
             document.getElementById('depositItemsContainer').innerHTML = '';
             addDepositRow();
@@ -383,61 +456,62 @@
         function processWithdraw() {
             const amount = parseFloat(document.getElementById('withdrawAmount').value);
             if (!amount || amount <= 0) { alert('กรุณาระบุจำนวนเงินที่ต้องการถอน'); return; }
-            if (amount > currentBalance) { alert('ยอดเงินในบัญชีของคุณไม่เพียงพอ'); return; }
+            if (amount > currentUser.balance) { alert('ยอดเงินในบัญชีของคุณไม่เพียงพอ'); return; }
 
-            currentBalance -= amount;
-            updateBalanceUI();
+            currentUser.balance -= amount;
 
             const now = new Date();
             const dateStr = now.toLocaleDateString('th-TH') + ' ' + now.toLocaleTimeString('th-TH', {hour: '2-digit', minute:'2-digit'});
             
-            const tbody = document.getElementById('transactionTableBody');
-            const newRow = document.createElement('tr');
-            newRow.className = "border-b border-slate-100";
-            newRow.innerHTML = `
-                <td class="py-3 px-4 text-slate-500">${dateStr}</td>
-                <td class="py-3 px-4 font-medium text-slate-800">ถอนเงินสดสะสม</td>
-                <td class="py-3 px-4 text-slate-600">-</td>
-                <td class="py-3 px-4 text-right font-bold text-rose-600">-${amount.toFixed(2)}</td>
-                <td class="py-3 px-4 text-right font-bold text-slate-800">${currentBalance.toFixed(2)}</td>
-            `;
-            tbody.insertBefore(newRow, tbody.firstChild);
+            const newTx = {
+                date: dateStr,
+                detail: `ถอนเงินสดสะสม`,
+                weight: `-`,
+                amount: `-${amount.toFixed(2)}`,
+                type: 'rose',
+                balance: currentUser.balance.toFixed(2)
+            };
+
+            currentUser.history.unshift(newTx);
+            saveAccountData();
+
+            updateBalanceUI();
+            renderTransactionTable();
             document.getElementById('withdrawAmount').value = '';
+
             alert(`ทำรายการถอนเงินสด ${amount.toFixed(2)} บาท สำเร็จ`);
         }
 
         function updateBalanceUI() {
-            document.getElementById('userBalance').innerText = currentBalance.toFixed(2);
+            document.getElementById('userBalance').innerText = currentUser.balance.toFixed(2);
+        }
+
+        function renderTransactionTable() {
+            const tbody = document.getElementById('transactionTableBody');
+            let html = '';
+            if (currentUser.history.length === 0) {
+                html = `<tr><td colspan="5" class="py-4 text-center text-slate-400">ยังไม่มีประวัติการทำรายการ</td></tr>`;
+            } else {
+                currentUser.history.forEach(tx => {
+                    html += `
+                        <tr class="border-b border-slate-100">
+                            <td class="py-3 px-4 text-slate-500">${tx.date}</td>
+                            <td class="py-3 px-4 font-medium text-slate-800">${tx.detail}</td>
+                            <td class="py-3 px-4 text-slate-600">${tx.weight}</td>
+                            <td class="py-3 px-4 text-right font-bold text-${tx.type}-600">${tx.amount}</td>
+                            <td class="py-3 px-4 text-right font-bold text-slate-800">${tx.balance}</td>
+                        </tr>
+                    `;
+                });
+            }
+            tbody.innerHTML = html;
         }
 
         function openLoginModal() { document.getElementById('loginModal').classList.remove('hidden'); }
         function closeLoginModal() { document.getElementById('loginModal').classList.add('hidden'); }
         
-        function submitLogin() {
-            const name = document.getElementById('loginUserInput').value;
-            if(!name) return;
-            isLoggedIn = true;
-            document.getElementById('userNameDisplay').innerText = name;
-            closeLoginModal();
-            switchView('dashboard');
-            
-            const authBtn = document.getElementById('authBtn');
-            authBtn.innerText = 'ออกจากระบบ';
-            authBtn.setAttribute('onclick', 'logout()');
-            authBtn.className = "bg-rose-50 text-rose-600 border border-rose-200 px-4 py-2 rounded-lg text-sm font-medium hover:bg-rose-100 transition";
-        }
-
-        function logout() {
-            isLoggedIn = false;
-            switchView('home');
-            const authBtn = document.getElementById('authBtn');
-            authBtn.innerText = 'เข้าสู่ระบบ';
-            authBtn.setAttribute('onclick', 'openLoginModal()');
-            authBtn.className = "bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-emerald-700 transition";
-        }
-
         function checkLoginDashboard() {
-            if (isLoggedIn) { switchView('dashboard'); } else { openLoginModal(); }
+            if (currentUser) { switchView('dashboard'); } else { openLoginModal(); }
         }
 
         function switchView(view) {
@@ -447,6 +521,10 @@
                 homeView.classList.remove('hidden');
                 dashboardView.classList.add('hidden');
             } else {
+                if (!currentUser) {
+                    openLoginModal();
+                    return;
+                }
                 homeView.classList.add('hidden');
                 dashboardView.classList.remove('hidden');
             }
