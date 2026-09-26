@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-BANK RMUTR - ธนาคารขยะรีไซเคิล</title>
+    <title>G-BANK RMUTR - ธนาคารรีไซเคิล</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -22,7 +23,7 @@
             </div>
             <nav class="hidden md:flex space-x-6 text-sm font-medium">
                 <a href="#home" onclick="switchView('home')" class="hover:text-emerald-600">หน้าแรก</a>
-                <a href="#prices" onclick="switchView('home')" class="hover:text-emerald-600">ราคารับซื้อขยะ</a>
+                <a href="#prices" onclick="switchView('home')" class="hover:text-emerald-600">ตารางราคารับซื้อ</a>
                 <a href="#" onclick="checkLoginDashboard()" class="hover:text-emerald-600">บัญชีของฉัน</a>
             </nav>
             <div>
@@ -33,7 +34,7 @@
         </div>
     </header>
 
-    <!-- MAIN VIEW: หน้าแรก (Home) -->
+    <!-- MAIN VIEW: หน้าแรก & ตารางราคา -->
     <div id="homeView">
         <!-- Hero Section -->
         <section class="bg-gradient-to-r from-emerald-800 to-teal-700 text-white py-16">
@@ -50,78 +51,27 @@
             </div>
         </section>
 
-        <!-- Price List Section (รูปแบบการ์ด และ ตารางรายละเอียด) -->
+        <!-- Price List Table Section (ตามแบบฟอร์มทางการ) -->
         <section id="prices" class="py-12 max-w-7xl mx-auto px-4">
-            <div class="text-center mb-10">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-2">ราคารับซื้อขยะรีไซเคิลประจำสัปดาห์</h2>
-                <p class="text-slate-500 text-sm">อัปเดตราคาล่าสุดจากจุดรับซื้อ G-BANK RMUTR</p>
-            </div>
-            
-            <!-- การ์ดแสดงผลแบบเดิม -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                    <div class="text-3xl mb-3">🥤</div>
-                    <h3 class="font-bold text-lg text-slate-800">พลาสติกใส (PET)</h3>
-                    <p class="text-slate-500 text-sm mb-4">ขวดน้ำดื่มใส ล้างสะอาด แกะฉลาก</p>
-                    <div class="flex justify-between items-center text-emerald-600 font-bold text-xl">
-                        <span>12.00 บาท</span>
-                        <span class="text-xs text-slate-400 font-normal">/ กิโลกรัม</span>
-                    </div>
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-2">ธนาคารขยะรีไซเคิล</h2>
+                    <h3 class="text-lg font-semibold text-emerald-700">ตารางคาราวัสดุรีไซเคิล</h3>
+                    <p class="text-slate-400 text-sm mt-1">ราคาตั้งแต่วันที่ 1- 31 สิงหาคม 2569</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                    <div class="text-3xl mb-3">🥫</div>
-                    <h3 class="font-bold text-lg text-slate-800">กระป๋องอลูมิเนียม</h3>
-                    <p class="text-slate-500 text-sm mb-4">กระป๋องน้ำอัดลม เบียร์ (ไม่พับแบน)</p>
-                    <div class="flex justify-between items-center text-emerald-600 font-bold text-xl">
-                        <span>35.00 บาท</span>
-                        <span class="text-xs text-slate-400 font-normal">/ กิโลกรัม</span>
-                    </div>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                    <div class="text-3xl mb-3">📦</div>
-                    <h3 class="font-bold text-lg text-slate-800">กระดาษลัง / กล่อง</h3>
-                    <p class="text-slate-500 text-sm mb-4">กระดาษลูกฟูกสะอาด ไม่เปียกชื้น</p>
-                    <div class="flex justify-between items-center text-emerald-600 font-bold text-xl">
-                        <span>3.50 บาท</span>
-                        <span class="text-xs text-slate-400 font-normal">/ กิโลกรัม</span>
-                    </div>
-                </div>
-            </div>
 
-            <!-- เพิ่มตารางรายละเอียดขยะตามที่เพื่อนต้องการ -->
-            <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
-                <div class="p-6 bg-emerald-50 border-b border-emerald-100">
-                    <h3 class="text-lg font-bold text-emerald-900">📋 ตารางสรุปรายการและคุณลักษณะขยะรีไซเคิล</h3>
-                </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse text-sm">
                         <thead>
-                            <tr class="bg-emerald-50/50 text-emerald-900 border-b border-emerald-100">
-                                <th class="py-3 px-6 font-semibold w-20">ลำดับที่</th>
-                                <th class="py-3 px-6 font-semibold">รายการ</th>
-                                <th class="py-3 px-6 font-semibold">คุณลักษณะ</th>
-                                <th class="py-3 px-6 font-semibold text-right">ราคาต่อหน่วย (บาท/กิโลกรัม)</th>
+                            <tr class="bg-emerald-50 text-emerald-900 border-b border-emerald-100 font-semibold">
+                                <th class="py-3 px-4 text-center w-16">ลำดับที่</th>
+                                <th class="py-3 px-4">รายการ</th>
+                                <th class="py-3 px-4">คุณลักษณะ</th>
+                                <th class="py-3 px-4 text-right">ราคาต่อหน่วย (บาท/กิโลกรัม)</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-100">
-                            <tr class="hover:bg-slate-50 transition">
-                                <td class="py-4 px-6 text-slate-500 font-medium">1</td>
-                                <td class="py-4 px-6 font-semibold text-slate-800">พลาสติกใส (PET)</td>
-                                <td class="py-4 px-6 text-slate-600">ขวดน้ำดื่มใส ล้างสะอาด แกะฉลากออกเรียบร้อย</td>
-                                <td class="py-4 px-6 text-right text-emerald-600 font-bold">12.00</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50 transition">
-                                <td class="py-4 px-6 text-slate-500 font-medium">2</td>
-                                <td class="py-4 px-6 font-semibold text-slate-800">กระป๋องอลูมิเนียม</td>
-                                <td class="py-4 px-6 text-slate-600">กระป๋องน้ำอัดลม กระป๋องเบียร์ (ไม่พับแบน)</td>
-                                <td class="py-4 px-6 text-right text-emerald-600 font-bold">35.00</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50 transition">
-                                <td class="py-4 px-6 text-slate-500 font-medium">3</td>
-                                <td class="py-4 px-6 font-semibold text-slate-800">กระดาษลัง / กล่อง</td>
-                                <td class="py-4 px-6 text-slate-600">กระดาษลูกฟูกสะอาด ไม่เปียกชื้น ไม่มีคราบน้ำ </td>
-                                <td class="py-4 px-6 text-right text-emerald-600 font-bold">3.50</td>
-                            </tr>
+                        <tbody id="masterPriceTable" class="divide-y divide-slate-100 text-slate-700">
+                            <!-- ข้อมูลจะถูกเติมด้วย JavaScript อัตโนมัติ -->
                         </tbody>
                     </table>
                 </div>
@@ -144,38 +94,42 @@
             </div>
         </div>
 
-        <!-- แผงควบคุมการทำงานหลัก (คำนวณขยะฝาก & ถอนเงิน) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <!-- แผงควบคุมการทำงานหลัก (คำนวณขยะฝากหลายรายการ & ถอนเงิน) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
             
-            <!-- ส่วนที่ 3: คำนวณน้ำหนักและราคาขยะ (จำลองฝากขยะเข้าบัญชี) -->
-            <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
-                <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-                    <span>⚖️</span> คำนวณน้ำหนัก & ฝากขยะเข้าบัญชี
+            <!-- ส่วนที่ฝากขยะ: เลือกหลายรายการ -->
+            <div class="lg:col-span-2 bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
+                <h3 class="text-xl font-bold text-slate-800 mb-2 flex items-center gap-2">
+                    <span>⚖️</span> ระบบคำนวณและฝากขยะเข้าบัญชี (เลือกได้หลายรายการ)
                 </h3>
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1">เลือกประเภทขยะ</label>
-                        <select id="calcWasteType" class="w-full border border-slate-300 rounded-lg p-3 focus:ring-2 focus:ring-emerald-500 outline-none text-sm">
-                            <option value="12" data-name="พลาสติกใส (PET)">พลาสติกใส (PET) - 12 บาท/กก.</option>
-                            <option value="35" data-name="กระป๋องอลูมิเนียม">กระป๋องอลูมิเนียม - 35 บาท/กก.</option>
-                            <option value="3.5" data-name="กระดาษลัง">กระดาษลัง - 3.5 บาท/กก.</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1">น้ำหนัก (กิโลกรัม)</label>
-                        <input type="number" id="calcWeight" placeholder="ระบุ กก." class="w-full border border-slate-300 rounded-lg p-3 focus:ring-2 focus:ring-emerald-500 outline-none text-sm" min="0" step="0.1">
-                    </div>
-                    <div class="p-3 bg-slate-50 rounded-xl flex justify-between items-center">
-                        <span class="text-sm text-slate-600">มูลค่าที่คำนวณได้:</span>
-                        <span id="previewMoney" class="text-lg font-bold text-emerald-600">0.00 บาท</span>
-                    </div>
-                    <button onclick="processDepositWaste()" class="w-full bg-emerald-600 text-white py-3 rounded-xl font-semibold hover:bg-emerald-700 transition text-sm">
-                        ยืนยันฝากขยะเข้าบัญชีเงินฝาก
+                <p class="text-slate-500 text-sm mb-6">เลือกประเภทขยะที่คุณนำมาฝาก และระบุน้ำหนักในแต่ละรายการ</p>
+                
+                <div id="depositItemsContainer" class="space-y-4 mb-6">
+                    <!-- รายการขยะที่จะเลือก (Dynamic Rows) -->
+                </div>
+
+                <div class="flex gap-3 mb-6">
+                    <button onclick="addDepositRow()" class="bg-slate-100 text-slate-700 px-4 py-2 rounded-xl font-medium hover:bg-slate-200 transition text-sm flex items-center gap-1">
+                        ➕ เพิ่มรายการขยะอีก
                     </button>
                 </div>
+
+                <div class="p-4 bg-emerald-50 rounded-2xl flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
+                    <div>
+                        <span class="text-sm text-slate-600">รวมน้ำหนักทั้งหมด: <strong id="totalWeightPreview" class="text-slate-800">0.00</strong> กก.</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-sm text-slate-600">มูลค่ารวมที่ได้รับ: </span>
+                        <span id="totalMoneyPreview" class="text-2xl font-bold text-emerald-600">0.00 บาท</span>
+                    </div>
+                </div>
+
+                <button onclick="processDepositWaste()" class="w-full bg-emerald-600 text-white py-3 rounded-xl font-semibold hover:bg-emerald-700 transition text-sm">
+                    ยืนยันฝากขยะเข้าบัญชีเงินฝาก
+                </button>
             </div>
 
-            <!-- ส่วนที่ 4: บัญชีเงินฝาก / ถอนเงิน -->
+            <!-- ส่วนบัญชีเงินฝาก / ถอนเงิน -->
             <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between">
                 <div>
                     <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
@@ -204,17 +158,19 @@
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse text-sm">
                     <thead>
-                        <tr class="border-b border-slate-200 text-slate-500">
+                        <tr class="border-b border-slate-200 text-slate-400 font-medium">
                             <th class="py-3 px-4">วัน-เวลา</th>
                             <th class="py-3 px-4">รายการ</th>
+                            <th class="py-3 px-4">น้ำหนักรวม (กก.)</th>
                             <th class="py-3 px-4 text-right">จำนวนเงิน (บาท)</th>
                         </tr>
                     </thead>
-                    <tbody id="transactionTableBody" class="divide-y divide-slate-100">
-                        <tr>
-                            <td class="py-3 px-4 text-slate-500">26/09/2026 10:00</td>
-                            <td class="py-3 px-4">ฝากขยะ: พลาสติกใส (PET) (10 กก.)</td>
-                            <td class="py-3 px-4 text-right text-emerald-600 font-semibold">+120.00</td>
+                    <tbody id="transactionTableBody">
+                        <tr class="border-b border-slate-100">
+                            <td class="py-3 px-4 text-slate-500">26/09/2026 10:30</td>
+                            <td class="py-3 px-4 font-medium text-slate-800">ฝากขยะ: พลาสติกขวดน้ำใส (5.0 กก.)</td>
+                            <td class="py-3 px-4 text-slate-600">5.0 กก.</td>
+                            <td class="py-3 px-4 text-right font-bold text-emerald-600">+27.00</td>
                         </tr>
                     </tbody>
                 </table>
@@ -222,161 +178,285 @@
         </div>
     </div>
 
-    <!-- LOGIN MODAL -->
-    <div id="loginModal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50 p-4">
-        <div class="bg-white p-8 rounded-3xl max-w-md w-full shadow-2xl">
+    <!-- MODAL: หน้าต่างล็อกอินจำลอง -->
+    <div id="loginModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md p-6 rounded-3xl shadow-xl">
             <h3 class="text-2xl font-bold text-slate-800 mb-2">เข้าสู่ระบบ G-BANK</h3>
-            <p class="text-slate-500 text-sm mb-6">กรอกรหัสนักศึกษาเพื่อเข้าสู่ระบบสมาชิก</p>
+            <p class="text-slate-500 text-sm mb-6">กรอกรหัสนักศึกษาหรือชื่อเพื่อเข้าใช้งาน</p>
             <div class="space-y-4 mb-6">
                 <div>
                     <label class="block text-sm font-medium text-slate-700 mb-1">รหัสนักศึกษา / ชื่อผู้ใช้งาน</label>
-                    <input type="text" id="loginUserInput" placeholder="เช่น 681111001" class="w-full border border-slate-300 rounded-xl p-3 focus:ring-2 focus:ring-emerald-500 outline-none text-sm">
+                    <input type="text" id="loginUserInput" placeholder="เช่น นายสมชาย รักษ์โลก" class="w-full border border-slate-300 rounded-lg p-3 focus:ring-2 focus:ring-emerald-500 outline-none text-sm" value="นายสมชาย รักษ์โลก">
                 </div>
             </div>
             <div class="flex gap-3">
-                <button onclick="closeLoginModal()" class="flex-1 bg-slate-100 text-slate-600 py-3 rounded-xl font-semibold hover:bg-slate-200 transition text-sm">
+                <button onclick="closeLoginModal()" class="w-1/2 bg-slate-100 text-slate-700 py-3 rounded-xl font-semibold hover:bg-slate-200 transition text-sm">
                     ยกเลิก
                 </button>
-                <button onclick="simulateLogin()" class="flex-1 bg-emerald-600 text-white py-3 rounded-xl font-semibold hover:bg-emerald-700 transition text-sm">
+                <button onclick="submitLogin()" class="w-1/2 bg-emerald-600 text-white py-3 rounded-xl font-semibold hover:bg-emerald-700 transition text-sm">
                     เข้าสู่ระบบ
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript สำหรับควบคุมการทำงาน -->
+    <!-- Script ข้อมูลและระบบคำนวณ -->
     <script>
-        let isLoggedIn = false;
+        // ฐานข้อมูลราคารับซื้อทั้ง 36 รายการ (อ้างอิงจากภาพตัวอย่างปี 2569)
+        const wasteData = [
+            { id: 1, name: "กระดาษขาว", desc: "กระดาษถ่ายเอกสาร", price: 4.50 },
+            { id: 2, name: "กล่องกระดาษ", desc: "กล่องกระดาษ", price: 3.15 },
+            { id: 3, name: "กระดาษหนังสือพิมพ์", desc: "กระดาษหนังสือพิมพ์", price: 2.70 },
+            { id: 4, name: "เศษกระดาษ", desc: "กระดาษสีไม่เคลือบพลาสติก", price: 1.80 },
+            { id: 5, name: "กระดาษมัน", desc: "กระดาษรองสติกเกอร์", price: 0.90 },
+            { id: 6, name: "แก้ว", desc: "เศษแก้วต่างๆ ขวดแก้วรวม", price: 0.90 },
+            { id: 7, name: "แกลลอนน้ำยาล้างไต", desc: "แกลลอนสำหรับใส่น้ำยาล้างไต", price: 14.40 },
+            { id: 8, name: "พลาสติกขวดน้ำใส", desc: "ขวดน้ำพลาสติก", price: 5.40 },
+            { id: 9, name: "พลาสติกขวดน้ำขุ่น", desc: "ขวดน้ำโพล่าสีขุ่น", price: 9.00 },
+            { id: 10, name: "ถุงพลาสติก", desc: "ปกพลาสติก, พลาสติกหนาสำหรับห่อหุ้มสินค้า", price: 1.80 },
+            { id: 11, name: "เศษพลาสติกรวม", desc: "ขวดพลาสติกใส่น้ำยาต่างๆ", price: 3.60 },
+            { id: 12, name: "พลาสติกกรอบ", desc: "พลาสติกใบพัด พลาสติกเครื่องใช้ไฟฟ้า", price: 1.80 },
+            { id: 13, name: "พลาสติกกรอบใส", desc: "พลาสติกกรอบที่ใช้บรรจุอาหาร/ขนม", price: 0.90 },
+            { id: 14, name: "แผ่นฟิล์มเอ็กซ์เรย์", desc: "แผ่นฟิล์มที่ใช้เอ็กซ์เรย์", price: 27.00 },
+            { id: 15, name: "แก้วพลาสติก", desc: "แก้วพลาสติกใส่น้ำปั่น, กาแฟสด", price: 7.20 },
+            { id: 16, name: "ถุงมือแพทย์", desc: "ถุงมือยางที่ใช้ทางการแพทย์", price: 1.80 },
+            { id: 17, name: "ถุงน้ำเกลือ", desc: "ถุงน้ำเกลือที่ใช้กับคนไข้", price: 9.00 },
+            { id: 18, name: "ขวดน้ำเกลือเหลี่ยมแบบใส", desc: "ขวดน้ำเกลือเหลี่ยมแบบใสที่ใช้กับคนไข้", price: 10.80 },
+            { id: 19, name: "ขวดน้ำเกลือเหลี่ยมแบบขุ่น", desc: "ขวดน้ำเกลือเหลี่ยมแบบขุ่นที่ใช้กับคนไข้", price: 10.80 },
+            { id: 20, name: "PVC สีเทา", desc: "ท่อพลาสติก PVC สีเทา/สายยาง", price: 1.80 },
+            { id: 21, name: "PVC สีฟ้า", desc: "ท่อพลาสติก PVC สีฟ้า", price: 2.70 },
+            { id: 22, name: "อลูมิเนียม", desc: "เศษอลูมิเนียม", price: 49.50 },
+            { id: 23, name: "กระป๋องอลูมิเนียม", desc: "กระป๋องน้ำอัดลม", price: 54.00 },
+            { id: 24, name: "กระป๋องกาแฟ", desc: "กระป๋องกาแฟ กระป๋องนมข้น สังกะสี", price: 2.70 },
+            { id: 25, name: "เศษเหล็กหนา", desc: "เศษเหล็กหนา", price: 6.30 },
+            { id: 26, name: "เศษเหล็กบาง", desc: "เศษเหล็กบาง", price: 5.40 },
+            { id: 27, name: "เหล็กหล่อ", desc: "เหล็กผสมโลหะอื่น", price: 6.30 },
+            { id: 28, name: "ปี๊บน้ำมัน", desc: "ปี๊บสำหรับใส่น้ำมัน(หนา)", price: 6.30 },
+            { id: 29, name: "ปี๊บแอลกอฮอล์", desc: "ปี๊บสำหรับใส่แอลกอฮอล์", price: 4.50 },
+            { id: 30, name: "สแตนเลส", desc: "สแตนเลส", price: 22.50 },
+            { id: 31, name: "ทองเหลือง", desc: "ทองเหลือง", price: 135.00 },
+            { id: 32, name: "ตะกั่ว", desc: "ตะกั่ว", price: 18.00 },
+            { id: 33, name: "รังผึ้งแอร์เนียม", desc: "รังผึ้งแอร์", price: 54.00 },
+            { id: 34, name: "แบตเตอรี่", desc: "แบตเตอรี่รถยนต์ (เทน้ำทิ้ง)", price: 13.50 },
+            { id: 35, name: "แผ่นซีดี", desc: "แผ่นซีดี", price: 13.50 },
+            { id: 36, name: "น้ำมันใช้แล้ว", desc: "น้ำมันทอดอาหาร", price: 20.70 }
+        ];
+
         let currentBalance = 450.00;
-        let currentUserName = "นายสมชาย รักษ์โลก (รหัส: 651111xxx)";
+        let isLoggedIn = false;
 
-        function switchView(view) {
-            const homeView = document.getElementById('homeView');
-            const dashboardView = document.getElementById('dashboardView');
-
-            if (view === 'home') {
-                homeView.classList.remove('hidden');
-                dashboardView.classList.add('hidden');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else if (view === 'dashboard') {
-                if (!isLoggedIn) {
-                    openLoginModal();
-                    return;
-                }
-                homeView.classList.add('hidden');
-                dashboardView.classList.remove('hidden');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+        // โหลดข้อมูลลงตารางหน้าแรกตอนเปิดเว็บ
+        window.onload = function() {
+            const tableBody = document.getElementById('masterPriceTable');
+            let htmlContent = '';
+            wasteData.forEach(item => {
+                htmlContent += `
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="py-3 px-4 text-center font-medium text-slate-500">${item.id}</td>
+                        <td class="py-3 px-4 font-semibold text-slate-800">${item.name}</td>
+                        <td class="py-3 px-4 text-slate-500 text-xs">${item.desc}</td>
+                        <td class="py-3 px-4 text-right font-bold text-emerald-600">${item.price.toFixed(2)}</td>
+                    </tr>
+                `;
+            });
+            tableBody.innerHTML = htmlContent;
+            addDepositRow(); // เพิ่มแถวเลือกขยะเริ่มต้น 1 แถวในหน้า Dashboard
         }
 
-        function checkLoginDashboard() {
-            if (isLoggedIn) {
-                switchView('dashboard');
+        // ระบบจัดการแถวเลือกขยะหลายรายการ (Multi-item Deposit)
+        function addDepositRow() {
+            const container = document.getElementById('depositItemsContainer');
+            const rowId = 'row_' + Date.now() + Math.random();
+            
+            let optionsHtml = '';
+            wasteData.forEach(item => {
+                optionsHtml += `<option value="${item.id}" data-price="${item.price}">${item.name} (${item.price.toFixed(2)} บ./กก.)</option>`;
+            });
+
+            const rowDiv = document.createElement('div');
+            rowDiv.className = "flex flex-col md:flex-row gap-3 items-center bg-slate-50 p-4 rounded-2xl border border-slate-200 relative";
+            rowDiv.id = rowId;
+            rowDiv.innerHTML = `
+                <div class="w-full md:w-3/5">
+                    <label class="block text-xs font-medium text-slate-500 mb-1">ประเภทขยะ</label>
+                    <select class="item-select w-full border border-slate-300 rounded-lg p-2.5 text-sm bg-white outline-none focus:ring-2 focus:ring-emerald-500" onchange="calculateTotalDeposit()">
+                        ${optionsHtml}
+                    </select>
+                </div>
+                <div class="w-full md:w-1/4">
+                    <label class="block text-xs font-medium text-slate-500 mb-1">น้ำหนัก (กก.)</label>
+                    <input type="number" class="item-weight w-full border border-slate-300 rounded-lg p-2.5 text-sm bg-white outline-none focus:ring-2 focus:ring-emerald-500" placeholder="0.0" min="0" step="0.1" oninput="calculateTotalDeposit()">
+                </div>
+                <div class="w-full md:w-1/6 text-right pt-2 md:pt-0">
+                    <span class="block text-xs text-slate-400">เป็นเงิน</span>
+                    <span class="item-total text-base font-bold text-emerald-700">0.00 บ.</span>
+                </div>
+                <button onclick="removeDepositRow('${rowId}')" class="absolute -top-2 -right-2 bg-rose-500 text-white w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center hover:bg-rose-600 shadow">×</button>
+            `;
+            container.appendChild(rowDiv);
+            calculateTotalDeposit();
+        }
+
+        function removeDepositRow(rowId) {
+            const row = document.getElementById(rowId);
+            if (document.querySelectorAll('#depositItemsContainer > div').length > 1) {
+                row.remove();
+                calculateTotalDeposit();
             } else {
-                openLoginModal();
+                alert('ต้องมีรายการขยะอย่างน้อย 1 รายการ');
             }
         }
 
-        function openLoginModal() {
-            document.getElementById('loginModal').classList.remove('hidden');
+        function calculateTotalDeposit() {
+            const rows = document.querySelectorAll('#depositItemsContainer > div');
+            let totalWeight = 0;
+            let totalMoney = 0;
+
+            rows.forEach(row => {
+                const select = row.querySelector('.item-select');
+                const weightInput = row.querySelector('.item-weight');
+                const totalSpan = row.querySelector('.item-total');
+
+                const selectedOption = select.options[select.selectedIndex];
+                const pricePerKg = parseFloat(selectedOption.getAttribute('data-price')) || 0;
+                const weight = parseFloat(weightInput.value) || 0;
+
+                const subtotal = pricePerKg * weight;
+                totalSpan.innerText = subtotal.toFixed(2) + ' บ.';
+
+                totalWeight += weight;
+                totalMoney += subtotal;
+            });
+
+            document.getElementById('totalWeightPreview').innerText = totalWeight.toFixed(1);
+            document.getElementById('totalMoneyPreview').innerText = totalMoney.toFixed(2) + ' บาท';
         }
 
-        function closeLoginModal() {
-            document.getElementById('loginModal').classList.add('hidden');
-        }
+        // ยืนยันการฝยะเข้าบัญชี
+        function processDepositWaste() {
+            const rows = document.querySelectorAll('#depositItemsContainer > div');
+            let totalMoney = 0;
+            let totalWeight = 0;
+            let summaryDesc = [];
 
-        function simulateLogin() {
-            const userInput = document.getElementById('loginUserInput').value.trim();
-            if (userInput !== "") {
-                currentUserName = `สมาชิก (รหัส: ${userInput})`;
-                document.getElementById('userNameDisplay').innerText = currentUserName;
+            rows.forEach(row => {
+                const select = row.querySelector('.item-select');
+                const weightInput = row.querySelector('.item-weight');
+                const selectedOption = select.options[select.selectedIndex];
+                const pricePerKg = parseFloat(selectedOption.getAttribute('data-price')) || 0;
+                const weight = parseFloat(weightInput.value) || 0;
+
+                if (weight > 0) {
+                    totalMoney += pricePerKg * weight;
+                    totalWeight += weight;
+                    summaryDesc.push(`${selectedOption.text.split('(')[0].trim()} (${weight}กก.)`);
+                }
+            });
+
+            if (totalMoney <= 0) {
+                alert('กรุณาระบุน้ำหนักขยะอย่างน้อย 1 รายการ');
+                return;
             }
+
+            currentBalance += totalMoney;
+            updateBalanceUI();
+
+            // บันทึก Statement
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('th-TH') + ' ' + now.toLocaleTimeString('th-TH', {hour: '2-digit', minute:'2-digit'});
+            
+            const tbody = document.getElementById('transactionTableBody');
+            const newRow = document.createElement('tr');
+            newRow.className = "border-b border-slate-100";
+            newRow.innerHTML = `
+                <td class="py-3 px-4 text-slate-500">${dateStr}</td>
+                <td class="py-3 px-4 font-medium text-slate-800">ฝากขยะ: ${summaryDesc.join(', ')}</td>
+                <td class="py-3 px-4 text-slate-600">${totalWeight.toFixed(1)} กก.</td>
+                <td class="py-3 px-4 text-right font-bold text-emerald-600">+${totalMoney.toFixed(2)}</td>
+            `;
+            tbody.insertBefore(newRow, tbody.firstChild);
+
+            // รีเซ็ตฟอร์ม
+            document.getElementById('depositItemsContainer.innerHTML = ""');
+            document.getElementById('depositItemsContainer').innerHTML = '';
+            addDepositRow();
+            calculateTotalDeposit();
+
+            alert(`ฝากขยะสำเร็จ! ระบบได้เพิ่มเงินเข้าบัญชีของคุณ ${totalMoney.toFixed(2)} บาท เรียบร้อยแล้ว`);
+        }
+
+        // ฟังก์ชันถอนเงิน
+        function processWithdraw() {
+            const amount = parseFloat(document.getElementById('withdrawAmount').value);
+            if (!amount || amount <= 0) { alert('กรุณาระบุจำนวนเงินที่ต้องการถอน'); return; }
+            if (amount > currentBalance) { alert('ยอดเงินในบัญชีของคุณไม่เพียงพอ'); return; }
+
+            currentBalance -= amount;
+            updateBalanceUI();
+
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('th-TH') + ' ' + now.toLocaleTimeString('th-TH', {hour: '2-digit', minute:'2-digit'});
+            
+            const tbody = document.getElementById('transactionTableBody');
+            const newRow = document.createElement('tr');
+            newRow.className = "border-b border-slate-100";
+            newRow.innerHTML = `
+                <td class="py-3 px-4 text-slate-500">${dateStr}</td>
+                <td class="py-3 px-4 font-medium text-slate-800">ถอนเงินสดสะสม</td>
+                <td class="py-3 px-4 text-slate-600">-</td>
+                <td class="py-3 px-4 text-right font-bold text-rose-600">-${amount.toFixed(2)}</td>
+            `;
+            tbody.insertBefore(newRow, tbody.firstChild);
+            document.getElementById('withdrawAmount').value = '';
+            alert(`ทำรายการถอนเงินสด ${amount.toFixed(2)} บาท สำเร็จ`);
+        }
+
+        function updateBalanceUI() {
+            document.getElementById('userBalance').innerText = currentBalance.toFixed(2);
+        }
+
+        function openLoginModal() { document.getElementById('loginModal').classList.remove('hidden'); }
+        function closeLoginModal() { document.getElementById('loginModal').classList.add('hidden'); }
+        
+        function submitLogin() {
+            const name = document.getElementById('loginUserInput').value;
+            if(!name) return;
             isLoggedIn = true;
-            document.getElementById('authBtn').innerText = "ออกจากระบบ";
-            document.getElementById('authBtn').setAttribute('onclick', "logout()");
+            document.getElementById('userNameDisplay').innerText = name;
             closeLoginModal();
             switchView('dashboard');
+            
+            const authBtn = document.getElementById('authBtn');
+            authBtn.innerText = 'ออกจากระบบ';
+            authBtn.setAttribute('onclick', 'logout()');
+            authBtn.className = "bg-rose-50 text-rose-600 border border-rose-200 px-4 py-2 rounded-lg text-sm font-medium hover:bg-rose-100 transition";
         }
 
         function logout() {
             isLoggedIn = false;
-            document.getElementById('authBtn').innerText = "เข้าสู่ระบบ";
-            document.getElementById('authBtn').setAttribute('onclick', "openLoginModal()");
             switchView('home');
+            const authBtn = document.getElementById('authBtn');
+            authBtn.innerText = 'เข้าสู่ระบบ';
+            authBtn.setAttribute('onclick', 'openLoginModal()');
+            authBtn.className = "bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-emerald-700 transition";
         }
 
-        const calcWeightInput = document.getElementById('calcWeight');
-        const calcWasteTypeSelect = document.getElementById('calcWasteType');
-        const previewMoney = document.getElementById('previewMoney');
-
-        function updatePreview() {
-            const pricePerKg = parseFloat(calcWasteTypeSelect.value) || 0;
-            const weight = parseFloat(calcWeightInput.value) || 0;
-            const total = pricePerKg * weight;
-            previewMoney.innerText = total.toFixed(2) + " บาท";
+        function checkLoginDashboard() {
+            if (isLoggedIn) { switchView('dashboard'); } else { openLoginModal(); }
         }
 
-        calcWeightInput.addEventListener('input', updatePreview);
-        calcWasteTypeSelect.addEventListener('change', updatePreview);
-
-        function processDepositWaste() {
-            const weight = parseFloat(calcWeightInput.value);
-            if (!weight || weight <= 0) {
-                alert("กรุณาระบุจำนวนน้ำหนักขยะให้ถูกต้อง");
-                return;
+        function switchView(view) {
+            const homeView = document.getElementById('homeView');
+            const dashboardView = document.getElementById('dashboardView');
+            if (view === 'home') {
+                homeView.classList.remove('hidden');
+                dashboardView.classList.add('hidden');
+            } else {
+                homeView.classList.add('hidden');
+                dashboardView.classList.remove('hidden');
             }
-
-            const selectedOption = calcWasteTypeSelect.options[calcWasteTypeSelect.selectedIndex];
-            const wasteName = selectedOption.getAttribute('data-name');
-            const pricePerKg = parseFloat(calcWasteTypeSelect.value);
-            const earnedMoney = weight * pricePerKg;
-
-            currentBalance += earnedMoney;
-            document.getElementById('userBalance').innerText = currentBalance.toFixed(2);
-
-            addTransactionRow(`ฝากขยะ: ${wasteName} (${weight} กก.)`, `+${earnedMoney.toFixed(2)}`, 'text-emerald-600');
-
-            calcWeightInput.value = "";
-            updatePreview();
-            alert(`ฝากขยะสำเร็จ! ระบบได้เพิ่มเงินเข้าบัญชี ${earnedMoney.toFixed(2)} บาทเรียบร้อยแล้ว`);
-        }
-
-        function processWithdraw() {
-            const withdrawInput = document.getElementById('withdrawAmount');
-            const amount = parseFloat(withdrawInput.value);
-
-            if (!amount || amount <= 0) {
-                alert("กรุณาระบุจำนวนเงินที่ต้องการถอนให้ถูกต้อง");
-                return;
-            }
-
-            if (amount > currentBalance) {
-                alert("ยอดเงินในบัญชีของคุณไม่เพียงพอสำหรับการถอน");
-                return;
-            }
-
-            currentBalance -= amount;
-            document.getElementById('userBalance').innerText = currentBalance.toFixed(2);
-
-            addTransactionRow("ถอนเงินสด", `-${amount.toFixed(2)}`, 'text-rose-600');
-
-            withdrawInput.value = "";
-            alert(`ทำรายการถอนเงินสด ${amount.toFixed(2)} บาท สำเร็จ กรุณารับเงินสดกับเจ้าหน้าที่`);
-        }
-
-        function addTransactionRow(detail, amountStr, colorClass) {
-            const tbody = document.getElementById('transactionTableBody');
-            const now = new Date();
-            const dateStr = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td class="py-3 px-4 text-slate-500">${dateStr}</td>
-                <td class="py-3 px-4">${detail}</td>
-                <td class="py-3 px-4 text-right ${colorClass} font-semibold">${amountStr}</td>
-            `;
-            tbody.insertBefore(tr, tbody.firstChild);
         }
     </script>
 </body>
 </html>
+
